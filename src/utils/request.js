@@ -4,7 +4,7 @@ import router from '@/router'
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: '/api', // 匹配 vite.config.js 里的代理
+  baseURL: import.meta.env.PROD ? 'https://api.guying.xyz' : '/api', 
   timeout: 5000
 })
 
