@@ -4,7 +4,8 @@ import router from '@/router'
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: import.meta.env.PROD ? 'https://api.guying.xyz' : '/api', 
+  // 开发环境走本地 /api 触发代理，生产环境直连线上
+  baseURL: import.meta.env.PROD ? 'https://api.guying.xyz' : '/api',
   timeout: 5000
 })
 

@@ -25,9 +25,9 @@ export default defineConfig({
     port: 5173, // 端口号
     proxy: {
       '/api': {
-        target: 'http://localhost:8080', // 后端地址
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '') // 去掉 /api
+        target: 'https://api.guying.xyz', 
+        changeOrigin: true, // 这个必须为 true，意思是把请求头里的 Host 改成目标域名，完美骗过跨域校验！
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
