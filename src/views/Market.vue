@@ -555,8 +555,8 @@ const sendAiMessage = async () => {
   // 将实际的请求逻辑封装在内部函数中，方便在 Token 刷新后进行重试
   const executeFetch = async (isRetry = false) => {
     // 每次执行时都实时从 localStorage 获取最新的 token
-    const token = localStorage.getItem('access_token')
-    let url = `/api/ai/service?prompt=${encodeURIComponent(prompt)}&chatId=${currentChatId.value}`
+    const apiBase = import.meta.env.PROD ? import.meta.env.VITE_API_BASE_URL : '/api'
+    let url = `${apiBase}/ai/service?prompt=${encodeURIComponent(prompt)}&chatId=${currentChatId.value}`
 
     const response = await fetch(url, {
       method: 'GET', 

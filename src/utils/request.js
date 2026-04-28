@@ -3,9 +3,9 @@ import { ElMessage } from 'element-plus'
 import router from '@/router'
 
 // 创建 axios 实例
+// 开发环境走本地 /api 触发代理（避免跨域），生产环境直连线上
 const service = axios.create({
-  // 开发环境走本地 /api 触发代理，生产环境直连线上
-  baseURL: import.meta.env.PROD ? 'https://api.guying.xyz' : '/api',
+  baseURL: import.meta.env.PROD ? import.meta.env.VITE_API_BASE_URL : '/api',
   timeout: 5000
 })
 
@@ -47,9 +47,9 @@ async function handleRefreshToken(config) {
       throw new Error('本地无刷新令牌')
     }
 
-    // 发送刷新请求
-    // 注意：这里保留了下划线格式 refresh_token，适配你后端的“下划线转驼峰”配置
-    const { data } = await axios.post('/api/user/refresh-token', {
+    // 发送刷新请求（绕过 service 实例避免拦截器死循环，直接裸调 axios）
+    const refreshBase = import.meta.env.PROD ? import.meta.env.VITE_API_BASE_URL : '/api'
+    const { data } = await axios.post(`${refreshBase}/user/refresh-token`, {
       refresh_token: refreshToken 
     })
 
