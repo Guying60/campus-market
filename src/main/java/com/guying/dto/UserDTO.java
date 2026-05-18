@@ -31,7 +31,6 @@ public class UserDTO {
 
     @Data
     public static class UpdateRequest {
-        //TODO 上传时会有问题
         @NotBlank(message = "昵称不能为空")
         @Pattern(regexp = "^[\\u4e00-\\u9fa5a-zA-Z0-9_-]{2,15}$", message = "昵称格式不正确")
         private String nickname;

@@ -24,7 +24,7 @@ public class FileController {
     public Result upload(MultipartFile file) {
         String suffix = Objects.requireNonNull(file.getOriginalFilename()).
                 substring(file.getOriginalFilename().lastIndexOf("."));
-        if (!".jpg".equals(suffix) && !".AVI".equals(suffix)  && !".MKV".equals(suffix) && !".MOV".equals(suffix)) {
+        if (!".jpg".equals(suffix) && !".png".equals(suffix) && !".AVI".equals(suffix)  && !".MKV".equals(suffix) && !".MOV".equals(suffix)) {
             log.error("文件格式错误，实际后缀为: " + suffix);
             return Result.error("文件格式错误");
         }
