@@ -1,0 +1,9 @@
+# 1. 忽略你所有的 Spring Boot 配置文件（最关键！）
+src/main/resources/application*.yml
+
+# 2. 忽略 IDEA 自动生成的本地配置文件夹和文件
+.idea/
+*.iml
+
+# 3. 忽略 Maven 编译输出的目录
+target/
